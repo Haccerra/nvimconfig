@@ -28,8 +28,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins from lua/plugins.lua
-require("opts")
+require("vim.opts")
 require("lazy").setup({
-  { import = "plugins" },
+  { import = "plugins.coding" },
+  { import = "plugins.navigation" },
+  { import = "plugins.ui" },
 })
 
