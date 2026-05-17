@@ -32,6 +32,7 @@ require("vim.opts")
 require("lazy").setup({
     { import = "plugins.coding" },
     { import = "plugins.coding.lsp" },
+    { import = "plugins.coding.lint" },
     { import = "plugins.navigation" },
     { import = "plugins.ui" },
     { import = "plugins.ui.theme" },

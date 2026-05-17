@@ -1,97 +1,81 @@
-return {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "main",
-    lazy = false,
-    build = ":TSUpdate",
-    config = function()
-        local treesitter = require("nvim-treesitter")
+--# selene: allow(mixed_table, undefined_variable)
 
-        -- Parsers matching your LSP list:
-        -- clangd          -> c, cpp
-        -- gopls           -> go
-        -- rust_analyzer   -> rust
-        -- jdtls           -> java
-        -- pyright         -> python
-        -- lua_ls          -> lua
-        -- ts_ls           -> javascript, typescript, tsx
-        -- asm_lsp         -> asm
-        -- clojure_lsp     -> clojure
-        -- perlnavigator   -> perl
-        -- csharp_ls       -> c_sharp
-        -- html            -> html
-        -- cssls           -> css
-        -- bashls          -> bash
-        --
-        -- Extra:
-        -- markdown/markdown_inline help LSP hover docs render correctly.
+local parsers = {
+	-- Core
+	"lua",
+	"vim",
+	"vimdoc",
+	"query",
 
-        local parsers = {
-            "c",
-            "cpp",
-            "go",
-            "rust",
-            "java",
-            "python",
-            "lua",
-            "javascript",
-            "typescript",
-            "tsx",
-            "asm",
-            "clojure",
-            "perl",
-            "c_sharp",
-            "html",
-            "css",
-            "bash",
-            "markdown",
-            "markdown_inline",
-        }
+	-- C / C++
+	"c",
+	"cpp",
 
-        treesitter.setup({
-            install_dir = vim.fn.stdpath("data") .. "/site",
-        })
+	-- Go
+	"go",
+	"gomod",
 
-        treesitter.install(parsers)
+	-- Rust
+	"rust",
 
-        -- Parser/filetype mappings where the names differ
-        vim.treesitter.language.register("c_sharp", { "cs", "csharp" })
-        vim.treesitter.language.register("bash", { "sh", "bash" })
-        vim.treesitter.language.register("tsx", { "typescriptreact" })
-        vim.treesitter.language.register("javascript", { "javascriptreact" })
+	-- Java
+	"java",
 
-        local filetypes = {
-            "c",
-            "cpp",
-            "go",
-            "rust",
-            "java",
-            "python",
-            "lua",
-            "javascript",
-            "javascriptreact",
-            "typescript",
-            "typescriptreact",
-            "asm",
-            "clojure",
-            "perl",
-            "cs",
-            "csharp",
-            "html",
-            "css",
-            "sh",
-            "bash",
-            "markdown",
-        }
+	-- Python
+	"python",
 
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = filetypes,
-            callback = function(args)
-                local ok = pcall(vim.treesitter.start, args.buf)
+	-- JavaScript / TypeScript
+	"javascript",
+	"typescript",
+	"tsx",
 
-                if ok then
-                    vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                end
-            end,
-        })
-    end,
+	-- HTML / CSS
+	"html",
+	"css",
+
+	-- Shell
+	"bash",
+
+	-- Clojure / Lisp-family
+	"clojure",
+
+	-- Perl
+	"perl",
+
+	-- C#
+	"c_sharp",
+
+	-- Common config/data formats
+	"json",
+	"yaml",
+	"toml",
+	"markdown",
+	"markdown_inline",
 }
+
+return {
+	{
+		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		build = ":TSUpdate",
+		config = function()
+			local ts = require("nvim-treesitter")
+
+			ts.setup({
+				install_dir = vim.fn.stdpath("data") .. "/site",
+			})
+
+			ts.install(parsers)
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("my-treesitter", { clear = true }),
+				pattern = parsers,
+				callback = function()
+					vim.treesitter.start()
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
+			})
+		end,
+	},
+}
+
