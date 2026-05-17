@@ -48,6 +48,11 @@ return {
 				desc = "Toggle Neo-tree",
 				silent = true,
 			})
+
+			vim.keymap.set("n", "<leader>nf", "<cmd>Neotree filesystem focus<CR>", {
+				desc = "Focus Neo-tree",
+				silent = true,
+			})
 		end,
 	},
 }
