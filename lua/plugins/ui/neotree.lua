@@ -2,36 +2,30 @@
 
 return {
 	{
-		"nvim-tree/nvim-web-devicons",
-		opts = {
-			default = true,
-		},
-	},
-
-	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			"nvim-tree/nvim-web-devicons",
+			{ "nvim-lua/plenary.nvim" },
+			{ "MunifTanjim/nui.nvim" },
+			{
+				"nvim-tree/nvim-web-devicons",
+				opts = {
+					default = true,
+				},
+			},
 		},
 		config = function()
 			require("neo-tree").setup({
-				close_if_last_window = false,
-				enable_git_status = true,
-				enable_diagnostics = true,
-
 				window = {
 					position = "right",
-					width = 35,
+				},
 
-					mappings = {
-						["<CR>"] = "toggle_node",
-						["<space>"] = "toggle_node",
-						["l"] = "open",
-						["h"] = "close_node",
-						["q"] = "close_window",
+				default_component_configs = {
+					icon = {
+						folder_closed = "",
+						folder_open = "",
+						folder_empty = "󰜌",
+						default = "󰈚",
 					},
 				},
 
