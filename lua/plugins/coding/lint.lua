@@ -6,11 +6,6 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvimtools/none-ls-extras.nvim",
 			"gbprod/none-ls-shellcheck.nvim",
-
-			{
-				"lewis6991/gitsigns.nvim",
-				opts = {},
-			},
 		},
 		config = function()
 			local null_ls = require("null-ls")

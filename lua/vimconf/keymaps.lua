@@ -60,16 +60,25 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", {
 })
 
 -- Buffer navigation
-map("n", "<S-l>", "<cmd>bnext<CR>", {
-	desc = "Next buffer",
-})
-
-map("n", "<S-h>", "<cmd>bprevious<CR>", {
-	desc = "Previous buffer",
-})
-
 map("n", "<leader>bd", "<cmd>bdelete<CR>", {
 	desc = "Delete buffer",
+})
+
+-- Tabpages navigation
+map("n", "<leader><tab>n", "<cmd>tabnew<CR>", {
+	desc = "New tab",
+})
+
+map("n", "<leader><tab>c", "<cmd>tabclose<CR>", {
+	desc = "Close tab",
+})
+
+map("n", "<leader><tab>l", "<cmd>tabnext<CR>", {
+	desc = "Next tab",
+})
+
+map("n", "<leader><tab>h", "<cmd>tabprevious<CR>", {
+	desc = "Previous tab",
 })
 
 -- Move selected lines
