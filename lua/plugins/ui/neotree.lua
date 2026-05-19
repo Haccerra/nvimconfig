@@ -47,6 +47,11 @@ return {
 				desc = "Focus Neo-tree",
 				silent = true,
 			})
+
+            vim.keymap.set("n", "<leader>ne", "<cmd>wincmd p<CR>", {
+                desc = "Focus editor",
+                silent = true,
+            })
 		end,
 	},
 }
