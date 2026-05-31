@@ -125,6 +125,9 @@ return {
                 map("n", "gD", vim.lsp.buf.declaration, "LSP Go to Declaration")
                 map("n", "gi", vim.lsp.buf.implementation, "LSP Go to Implementation")
                 map("n", "gt", vim.lsp.buf.type_definition, "LSP Go to Type Definition")
+                map("n", "gr", vim.lsp.buf.references, "Find references")
+                map("n", "<leader>ci", vim.lsp.buf.incoming_calls, "Incoming calls")
+                map("n", "<leader>co", vim.lsp.buf.outgoing_calls, "Outgoing calls")
 
                 -- Rename
                 map("n", "<leader>rn", vim.lsp.buf.rename, "LSP Rename")
