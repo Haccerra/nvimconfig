@@ -142,3 +142,8 @@ map("n", "<leader>xq", vim.diagnostic.setqflist, {
 	desc = "Diagnostics quickfix list",
 })
 
+-- Visual Mode Remap
+map({ "n", "x" }, "<C-q>", "<C-v>", {
+        desc = "Enter visual block mode",
+})
+
